@@ -6,9 +6,6 @@ on:
       - 7.72
       - v*
 
-    tags:
-      - v*
-
     paths:
       - cmake/**
       - src/**
