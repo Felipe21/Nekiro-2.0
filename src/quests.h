@@ -17,8 +17,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef FS_QUESTS_H_16E44051F23547BE8097F8EA9FCAACA0
-#define FS_QUESTS_H_16E44051F23547BE8097F8EA9FCAACA0
+#ifndef FS_QUESTS_H
+#define FS_QUESTS_H
 
 #include "player.h"
 #include "networkmessage.h"
@@ -116,4 +116,27 @@ class Quests
 		QuestsList quests;
 };
 
+//<<<<<<< HEAD
 #endif
+//=======
+class TrackedQuest
+{
+	public:
+		TrackedQuest(uint16_t questId, uint16_t missionId) :
+			questId(questId), missionId(missionId) {}
+
+		uint16_t getQuestId() const {
+			return questId;
+		}
+
+		uint16_t getMissionId() const {
+			return missionId;
+		}
+
+	private:
+		uint16_t questId = 0;
+		uint16_t missionId = 0;
+};
+
+#endif // FS_QUESTS_H
+//>>>>>>> 69547750 (Normalize include guards to FS_<FILENAME>_H (#3993))
