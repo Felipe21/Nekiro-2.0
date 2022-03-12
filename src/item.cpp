@@ -887,7 +887,6 @@ uint32_t Item::getWeight() const
 std::string Item::getDescription(int32_t) const
 {
 
-	// item descriptions moved to lua
 	return "";
 }
 

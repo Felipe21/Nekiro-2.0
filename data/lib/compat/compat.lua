@@ -1540,7 +1540,6 @@ do
 	end
 end
 
-
 function indexToCombatType(idx)
 	return bit.lshift(1, idx)
 end
