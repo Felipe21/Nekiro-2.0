@@ -20,8 +20,6 @@
 #ifndef FS_SPECTATORS_H
 #define FS_SPECTATORS_H
 
-#include <vector>
-
 class Creature;
 
 class SpectatorVec

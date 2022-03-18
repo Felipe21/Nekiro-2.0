@@ -23,8 +23,6 @@
 #include "creature.h"
 #include "luascript.h"
 
-#include <set>
-
 class Npc;
 class Player;
 

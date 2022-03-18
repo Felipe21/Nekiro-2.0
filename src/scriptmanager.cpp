@@ -23,13 +23,13 @@
 
 #include "actions.h"
 #include "chat.h"
-#include "talkaction.h"
-#include "spells.h"
-#include "movement.h"
-#include "weapons.h"
-#include "globalevent.h"
 #include "events.h"
+#include "globalevent.h"
+#include "movement.h"
 #include "script.h"
+#include "spells.h"
+#include "talkaction.h"
+#include "weapons.h"
 
 Actions* g_actions = nullptr;
 CreatureEvents* g_creatureEvents = nullptr;

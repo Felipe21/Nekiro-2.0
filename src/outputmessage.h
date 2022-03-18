@@ -24,8 +24,6 @@
 #include "connection.h"
 #include "tools.h"
 
-class Protocol;
-
 class OutputMessage : public NetworkMessage
 {
 	public:

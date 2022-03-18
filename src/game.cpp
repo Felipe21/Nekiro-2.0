@@ -19,7 +19,7 @@
 
 #include "otpch.h"
 
-#include "pugicast.h"
+#include "globalevent.h"
 
 #include "actions.h"
 #include "bed.h"
@@ -27,22 +27,27 @@
 #include "creature.h"
 #include "creatureevent.h"
 #include "databasetasks.h"
+#include "depotchest.h"
 #include "events.h"
 #include "game.h"
-#include "globalevent.h"
+#include "housetile.h"
+#include "inbox.h"
 #include "iologindata.h"
 #include "iomarket.h"
 #include "items.h"
 #include "monster.h"
 #include "movement.h"
+#include "npc.h"
+#include "outfit.h"
+#include "party.h"
 #include "scheduler.h"
+#include "script.h"
 #include "server.h"
+#include "spectators.h"
 #include "spells.h"
+#include "storeinbox.h"
 #include "talkaction.h"
 #include "weapons.h"
-#include "script.h"
-
-#include <fmt/format.h>
 
 extern ConfigManager g_config;
 extern Actions* g_actions;

@@ -20,6 +20,8 @@
 #ifndef FS_XTEA_H
 #define FS_XTEA_H
 
+#include <array>
+
 namespace xtea {
 
 using key = std::array<uint32_t, 4>;

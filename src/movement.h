@@ -21,9 +21,11 @@
 #define FS_MOVEMENT_H
 
 #include "baseevents.h"
-#include "item.h"
+#include "creature.h"
 #include "luascript.h"
 #include "vocation.h"
+
+class MoveEvent;
 
 extern Vocations g_vocations;
 
@@ -41,7 +43,6 @@ enum MoveEvent_t {
 	MOVE_EVENT_NONE
 };
 
-class MoveEvent;
 using MoveEvent_ptr = std::unique_ptr<MoveEvent>;
 
 struct MoveEventList {
