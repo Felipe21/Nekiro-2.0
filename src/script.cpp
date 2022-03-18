@@ -19,8 +19,9 @@
 
 #include "otpch.h"
 
-#include "configmanager.h"
 #include "script.h"
+
+#include "configmanager.h"
 
 #include <filesystem>
 

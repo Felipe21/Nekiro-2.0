@@ -20,10 +20,13 @@
 #include "otpch.h"
 
 #include "monster.h"
-#include "game.h"
-#include "spells.h"
-#include "events.h"
+
+#include "condition.h"
 #include "configmanager.h"
+#include "events.h"
+#include "game.h"
+#include "spectators.h"
+#include "spells.h"
 
 extern Game g_game;
 extern Monsters g_monsters;

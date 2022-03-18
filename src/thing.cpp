@@ -20,6 +20,7 @@
 #include "otpch.h"
 
 #include "thing.h"
+
 #include "tile.h"
 
 const Position& Thing::getPosition() const

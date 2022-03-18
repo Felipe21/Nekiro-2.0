@@ -23,6 +23,8 @@
 #include "player.h"
 
 
+#include "inbox.h"
+
 DepotLocker::DepotLocker(uint16_t type) :
 	Container(type), depotId(0) {}
 
