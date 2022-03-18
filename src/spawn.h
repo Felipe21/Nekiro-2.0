@@ -22,8 +22,6 @@
 
 #include "position.h"
 
-#include <utility>
-
 class Monster;
 class MonsterType;
 class Npc;

@@ -20,8 +20,6 @@
 #ifndef FS_RSA_H
 #define FS_RSA_H
 
-#include <cryptopp/rsa.h>
-
 class RSA
 {
 	public:
