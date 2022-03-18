@@ -25,9 +25,6 @@
 #include "item.h"
 #include "tools.h"
 
-#include <utility>
-#include <valarray>
-
 class Creature;
 class Player;
 struct Position;

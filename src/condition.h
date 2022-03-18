@@ -22,8 +22,6 @@
 
 #include "enums.h"
 
-#include <limits>
-
 class Creature;
 class Player;
 class PropStream;

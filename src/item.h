@@ -25,9 +25,6 @@
 #include "luascript.h"
 #include "thing.h"
 
-#include <boost/variant.hpp>
-#include <deque>
-
 class BedItem;
 class Container;
 class Door;

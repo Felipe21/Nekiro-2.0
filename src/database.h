@@ -22,8 +22,6 @@
 
 #include "pugicast.h"
 
-#include <mysql/mysql.h>
-
 class DBResult;
 using DBResult_ptr = std::shared_ptr<DBResult>;
 
