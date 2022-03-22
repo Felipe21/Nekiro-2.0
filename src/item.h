@@ -24,7 +24,6 @@
 #include "items.h"
 #include "luascript.h"
 #include "thing.h"
-#include "tools.h"
 
 class BedItem;
 class Container;
@@ -451,7 +450,7 @@ class ItemAttributes
 
 		template<typename R>
 		void setCustomAttribute(std::string& key, R value) {
-			toLowerCaseString(key);
+			boost::algorithm::to_lower(key);
 			if (hasAttribute(ITEM_ATTRIBUTE_CUSTOM)) {
 				removeCustomAttribute(key);
 			} else {
@@ -461,7 +460,7 @@ class ItemAttributes
 		}
 
 		void setCustomAttribute(std::string& key, CustomAttribute& value) {
-			toLowerCaseString(key);
+			boost::algorithm::to_lower(key);
 			if (hasAttribute(ITEM_ATTRIBUTE_CUSTOM)) {
 				removeCustomAttribute(key);
 			} else {
@@ -477,7 +476,7 @@ class ItemAttributes
 
 		const CustomAttribute* getCustomAttribute(const std::string& key) {
 			if (const CustomAttributeMap* customAttrMap = getCustomAttributeMap()) {
-				auto it = customAttrMap->find(asLowerCaseString(key));
+				auto it = customAttrMap->find(boost::algorithm::to_lower_copy(key));
 				if (it != customAttrMap->end()) {
 					return &(it->second);
 				}
@@ -492,7 +491,7 @@ class ItemAttributes
 
 		bool removeCustomAttribute(const std::string& key) {
 			if (CustomAttributeMap* customAttrMap = getCustomAttributeMap()) {
-				auto it = customAttrMap->find(asLowerCaseString(key));
+				auto it = customAttrMap->find(boost::algorithm::to_lower_copy(key));
 				if (it != customAttrMap->end()) {
 					customAttrMap->erase(it);
 					return true;
