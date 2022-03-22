@@ -24,6 +24,10 @@
 #include "definitions.h"
 
 #include <algorithm>
+#include <array>
+#include <atomic>
+#include <bitset>
+#include <boost/algorithm/string.hpp>
 #include <boost/asio.hpp>
 #include <cstdint>
 #include <fmt/color.h>
