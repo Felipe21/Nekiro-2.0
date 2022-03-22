@@ -23,6 +23,7 @@
 #include "baseevents.h"
 #include "condition.h"
 #include "item.h"
+#include "tools.h"
 
 #include <utility>
 #include <valarray>
