@@ -28,6 +28,7 @@
 #include <array>
 #include <atomic>
 #include <bitset>
+#include <boost/algorithm/string.hpp>
 #include <boost/asio.hpp>
 #include <boost/iostreams/device/mapped_file.hpp>
 #include <boost/lockfree/stack.hpp>
