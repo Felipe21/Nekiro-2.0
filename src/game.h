@@ -475,13 +475,8 @@ class Game
 		int16_t getWorldTime() { return worldTime; }
 		void updateWorldTime();
 
-		void loadMotdNum();
-		void saveMotdNum() const;
-		const std::string& getMotdHash() const { return motdHash; }
-		uint32_t getMotdNum() const { return motdNum; }
-		void incrementMotdNum() { motdNum++; }
+		void sendOfflineTrainingDialog(Player* player);
 
-		//void sendOfflineTrainingDialog(Player* player);
 
 		const std::unordered_map<uint32_t, Player*>& getPlayers() const { return players; }
 		const std::map<uint32_t, Npc*>& getNpcs() const { return npcs; }
@@ -598,9 +593,6 @@ class Game
 
 		void updatePlayersRecord() const;
 		uint32_t playersRecord = 0;
-
-		std::string motdHash;
-		uint32_t motdNum = 0;
 
 		uint32_t lastStageLevel = 0;
 		bool stagesEnabled = false;
