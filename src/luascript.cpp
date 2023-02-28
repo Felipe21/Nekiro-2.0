@@ -30,29 +30,7 @@
 #include "spells.h"
 #include "iologindata.h"
 #include "iomapserialize.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
-#include "iomarket.h"
-#include "luavariant.h"
-#include "monster.h"
-#include "movement.h"
-#include "npc.h"
-#include "outfit.h"
-#include "party.h"
-#include "player.h"
-//#include "podium.h"
-#include "protocolstatus.h"
-#include "scheduler.h"
-#include "script.h"
-#include "spectators.h"
-#include "spells.h"
-#include "storeinbox.h"
-=======
 #include "configmanager.h"
->>>>>>> parent of df7e47b4 (Cleanup & organize includes and PCH (#4019))
-=======
-#include "configmanager.h"
->>>>>>> parent of df7e47b4 (Cleanup & organize includes and PCH (#4019))
 #include "teleport.h"
 #include "databasemanager.h"
 #include "bed.h"
