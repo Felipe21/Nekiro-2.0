@@ -926,6 +926,15 @@ class Item : virtual public Thing
 		bool isRune() const {
 			return items[id].isRune();
 		}
+		void setStoreItem(bool storeItem) {
+			setIntAttr(ITEM_ATTRIBUTE_STOREITEM, static_cast<int64_t>(storeItem));
+		}
+		bool isStoreItem() const {
+			if (hasAttribute(ITEM_ATTRIBUTE_STOREITEM)) {
+				return getIntAttr(ITEM_ATTRIBUTE_STOREITEM) == 1;
+			}
+			return items[id].storeItem;
+		}
 
 		const std::string& getName() const {
 			if (hasAttribute(ITEM_ATTRIBUTE_NAME)) {
