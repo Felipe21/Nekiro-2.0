@@ -366,6 +366,9 @@ class Player final : public Creature, public Cylinder
 		bool isInMarket() const {
 			return inMarket;
 		}
+		int32_t getIdleTime() const {
+			return idleTime;
+		}
 
 		void resetIdleTime() {
 			idleTime = 0;
