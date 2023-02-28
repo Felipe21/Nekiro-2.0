@@ -636,5 +636,5 @@ enum MonstersEvent_t : uint8_t {
 	uint16_t chance = 0;
 };*/
 
-#endif // FS_ENUMS_H
+//#endif // FS_ENUMS_H
 //>>>>>>> 69547750 (Normalize include guards to FS_<FILENAME>_H (#3993))

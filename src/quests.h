@@ -119,7 +119,7 @@ class Quests
 //<<<<<<< HEAD
 #endif
 //=======
-class TrackedQuest
+/*class TrackedQuest
 {
 	public:
 		TrackedQuest(uint16_t questId, uint16_t missionId) :
@@ -136,7 +136,7 @@ class TrackedQuest
 	private:
 		uint16_t questId = 0;
 		uint16_t missionId = 0;
-};
+};*/
 
-#endif // FS_QUESTS_H
+//#endif // FS_QUESTS_H
 //>>>>>>> 69547750 (Normalize include guards to FS_<FILENAME>_H (#3993))
