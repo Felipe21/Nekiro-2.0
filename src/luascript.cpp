@@ -31,6 +31,7 @@
 #include "iologindata.h"
 #include "iomapserialize.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "iomarket.h"
 #include "luavariant.h"
 #include "monster.h"
@@ -46,6 +47,9 @@
 #include "spectators.h"
 #include "spells.h"
 #include "storeinbox.h"
+=======
+#include "configmanager.h"
+>>>>>>> parent of df7e47b4 (Cleanup & organize includes and PCH (#4019))
 =======
 #include "configmanager.h"
 >>>>>>> parent of df7e47b4 (Cleanup & organize includes and PCH (#4019))
