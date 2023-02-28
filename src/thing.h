@@ -20,12 +20,13 @@
 #ifndef FS_THING_H
 #define FS_THING_H
 
-class Container;
-class Creature;
+#include "position.h"
+
+class Tile;
 class Cylinder;
 class Item;
-class Tile;
-struct Position;
+class Creature;
+class Container;
 
 class Thing
 {

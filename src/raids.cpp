@@ -21,11 +21,14 @@
 
 #include "raids.h"
 
-#include "configmanager.h"
-#include "game.h"
-#include "monster.h"
 #include "pugicast.h"
+
+#include "game.h"
+#include "configmanager.h"
 #include "scheduler.h"
+#include "monster.h"
+
+#include <fmt/format.h>
 
 extern Game g_game;
 extern ConfigManager g_config;

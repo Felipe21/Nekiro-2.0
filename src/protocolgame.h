@@ -20,29 +20,20 @@
 #ifndef FS_PROTOCOLGAME_H
 #define FS_PROTOCOLGAME_H
 
+#include "protocol.h"
 #include "chat.h"
 #include "creature.h"
-#include "definitions.h"
-#include "protocol.h"
 #include "tasks.h"
 
-
-class Container;
-class Game;
 class NetworkMessage;
 class Player;
-class ProtocolGame;
-class Quest;
+class Game;
+class House;
+class Container;
 class Tile;
-//class TrackedQuest;
-
-enum SessionEndTypes_t : uint8_t {
-	SESSION_END_LOGOUT = 0,
-	SESSION_END_UNKNOWN = 1, // unknown, no difference from logout
-	SESSION_END_FORCECLOSE = 2,
-	SESSION_END_UNKNOWN2 = 3, // unknown, no difference from logout
-};
-
+class Connection;
+class Quest;
+class ProtocolGame;
 using ProtocolGame_ptr = std::shared_ptr<ProtocolGame>;
 
 extern Game g_game;

@@ -20,14 +20,10 @@
 #include "otpch.h"
 
 #include "creature.h"
-
-#include "combat.h"
-#include "configmanager.h"
 #include "game.h"
 #include "monster.h"
-#include "party.h"
+#include "configmanager.h"
 #include "scheduler.h"
-#include "spectators.h"
 
 double Creature::speedA = 857.36;
 double Creature::speedB = 261.29;
@@ -886,6 +882,7 @@ BlockType_t Creature::blockHit(Creature* attacker, CombatType_t combatType, int3
 	}
 
 	if (attacker) {
+<<<<<<< HEAD
 
 		if (Player* attackerPlayer = attacker->getPlayer()) {
 			for (int32_t slot = CONST_SLOT_FIRST; slot <= CONST_SLOT_LAST; ++slot) {
@@ -910,6 +907,8 @@ BlockType_t Creature::blockHit(Creature* attacker, CombatType_t combatType, int3
 			blockType = BLOCK_ARMOR;
 		}
 
+=======
+>>>>>>> parent of df7e47b4 (Cleanup & organize includes and PCH (#4019))
 		attacker->onAttackedCreature(this);
 		attacker->onAttackedCreatureBlockHit(blockType);
 	}

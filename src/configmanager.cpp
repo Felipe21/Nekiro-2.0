@@ -19,16 +19,17 @@
 
 #include "otpch.h"
 
-#include "configmanager.h"
-#include "game.h"
-#include "monster.h"
-#include "pugicast.h"
-
+#include <algorithm>
 #if __has_include("luajit/lua.hpp")
 #include <luajit/lua.hpp>
 #else
 #include <lua.hpp>
 #endif
+
+#include "configmanager.h"
+#include "game.h"
+#include "monster.h"
+#include "pugicast.h"
 
 #if LUA_VERSION_NUM >= 502
 #undef lua_strlen

@@ -20,10 +20,8 @@
 #include "otpch.h"
 
 #include "npc.h"
-
 #include "game.h"
 #include "pugicast.h"
-#include "spectators.h"
 
 extern Game g_game;
 extern LuaEnvironment g_luaEnvironment;

@@ -21,23 +21,33 @@
 #define FS_PLAYER_H
 
 #include "creature.h"
+#include "container.h"
 #include "cylinder.h"
-#include "depotlocker.h"
+#include "outfit.h"
 #include "enums.h"
-#include "groups.h"
-#include "guild.h"
-#include "protocolgame.h"
-#include "town.h"
 #include "vocation.h"
+#include "protocolgame.h"
+#include "party.h"
+#include "inbox.h"
+#include "depotchest.h"
+#include "depotlocker.h"
+#include "guild.h"
+#include "groups.h"
+#include "town.h"
+#include "mounts.h"
+#include "storeinbox.h"
 
 #include <bitset>
 
-class DepotChest;
 class House;
 class NetworkMessage;
+class Weapon;
+class ProtocolGame;
 class Npc;
 class Party;
 class SchedulerTask;
+class Bed;
+class Guild;
 
 enum skillsid_t {
 	SKILLVALUE_LEVEL = 0,

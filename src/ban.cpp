@@ -20,10 +20,11 @@
 #include "otpch.h"
 
 #include "ban.h"
-
 #include "database.h"
 #include "databasetasks.h"
 #include "tools.h"
+
+#include <fmt/format.h>
 
 bool Ban::acceptConnection(uint32_t clientIP)
 {

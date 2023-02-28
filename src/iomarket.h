@@ -20,8 +20,8 @@
 #ifndef FS_IOMARKET_H
 #define FS_IOMARKET_H
 
-#include "database.h"
 #include "enums.h"
+#include "database.h"
 
 class IOMarket
 {

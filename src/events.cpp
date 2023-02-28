@@ -20,10 +20,11 @@
 #include "otpch.h"
 
 #include "events.h"
-
+#include "tools.h"
 #include "item.h"
 #include "player.h"
-#include "tools.h"
+
+#include <set>
 
 Events::Events() :
 	scriptInterface("Event Interface")
@@ -1059,3 +1060,4 @@ void Events::eventMonsterOnDropLoot(Monster* monster, Container* corpse)
 
 	return scriptInterface.callVoidFunction(2);
 }
+

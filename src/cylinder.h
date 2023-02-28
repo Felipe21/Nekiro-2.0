@@ -23,8 +23,8 @@
 #include "enums.h"
 #include "thing.h"
 
-class Creature;
 class Item;
+class Creature;
 
 static constexpr int32_t INDEX_WHEREEVER = -1;
 

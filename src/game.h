@@ -20,18 +20,24 @@
 #ifndef FS_GAME_H
 #define FS_GAME_H
 
+#include "account.h"
+#include "combat.h"
 #include "groups.h"
 #include "map.h"
-#include "mounts.h"
-#include "player.h"
 #include "position.h"
-#include "quests.h"
+#include "item.h"
+#include "container.h"
+#include "player.h"
 #include "raids.h"
+#include "npc.h"
 #include "wildcardtree.h"
+#include "quests.h"
 
+class ServiceManager;
+class Creature;
 class Monster;
 class Npc;
-class ServiceManager;
+class CombatInfo;
 
 enum stackPosType_t {
 	STACKPOS_MOVE,

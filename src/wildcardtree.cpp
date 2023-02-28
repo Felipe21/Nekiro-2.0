@@ -19,10 +19,9 @@
 
 #include "otpch.h"
 
-#include "wildcardtree.h"
-
 #include <stack>
-#include <tuple>
+
+#include "wildcardtree.h"
 
 WildcardTreeNode* WildcardTreeNode::getChild(char ch)
 {

@@ -20,10 +20,11 @@
 #ifndef FS_IOMAP_H
 #define FS_IOMAP_H
 
-#include "configmanager.h"
-#include "house.h"
+#include "item.h"
 #include "map.h"
+#include "house.h"
 #include "spawn.h"
+#include "configmanager.h"
 
 extern ConfigManager g_config;
 

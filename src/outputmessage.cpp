@@ -20,9 +20,8 @@
 #include "otpch.h"
 
 #include "outputmessage.h"
-
-#include "lockfree.h"
 #include "protocol.h"
+#include "lockfree.h"
 #include "scheduler.h"
 
 extern Scheduler g_scheduler;

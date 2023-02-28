@@ -21,7 +21,9 @@
 
 #include "iomap.h"
 
-#include "housetile.h"
+#include "bed.h"
+
+#include <fmt/format.h>
 
 /*
 	OTBM_ROOTV1
@@ -473,3 +475,4 @@ bool IOMap::parseWaypoints(OTB::Loader& loader, const OTB::Node& waypointsNode, 
 	}
 	return true;
 }
+

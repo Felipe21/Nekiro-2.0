@@ -20,12 +20,21 @@
 #ifndef FS_MAP_H
 #define FS_MAP_H
 
-#include "house.h"
 #include "position.h"
-#include "spawn.h"
+#include "item.h"
+#include "fileloader.h"
+
+#include "tools.h"
+#include "tile.h"
 #include "town.h"
+#include "house.h"
+#include "spawn.h"
 
 class Creature;
+class Player;
+class Game;
+class Tile;
+class Map;
 
 static constexpr int32_t MAP_MAX_LAYERS = 16;
 

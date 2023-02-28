@@ -22,6 +22,8 @@
 
 #include <cryptopp/rsa.h>
 
+#include <string>
+
 class RSA
 {
 	public:

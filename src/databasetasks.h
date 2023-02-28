@@ -20,10 +20,10 @@
 #ifndef FS_DATABASETASKS_H
 #define FS_DATABASETASKS_H
 
-#include "database.h"
-#include "thread_holder_base.h"
-
 #include <condition_variable>
+#include "thread_holder_base.h"
+#include "database.h"
+#include "enums.h"
 
 struct DatabaseTask {
 	DatabaseTask(std::string&& query, std::function<void(DBResult_ptr, bool)>&& callback, bool store) :

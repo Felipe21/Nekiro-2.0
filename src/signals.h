@@ -20,6 +20,8 @@
 #ifndef FS_SIGNALS_H
 #define FS_SIGNALS_H
 
+#include <boost/asio.hpp>
+
 class Signals
 {
 	boost::asio::signal_set set;

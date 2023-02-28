@@ -20,9 +20,7 @@
 #include "otpch.h"
 
 #include "mailbox.h"
-
 #include "game.h"
-#include "inbox.h"
 #include "iologindata.h"
 
 extern Game g_game;
