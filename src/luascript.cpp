@@ -42,7 +42,7 @@
 #include "outfit.h"
 #include "party.h"
 #include "player.h"
-#include "podium.h"
+//#include "podium.h"
 #include "protocolstatus.h"
 #include "scheduler.h"
 #include "script.h"
