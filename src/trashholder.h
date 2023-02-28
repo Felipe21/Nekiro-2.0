@@ -21,8 +21,6 @@
 #define FS_TRASHHOLDER_H
 
 #include "item.h"
-#include "cylinder.h"
-#include "const.h"
 
 class TrashHolder final : public Item, public Cylinder
 {

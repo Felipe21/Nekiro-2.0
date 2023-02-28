@@ -20,6 +20,7 @@
 #include "otpch.h"
 
 #include "teleport.h"
+
 #include "game.h"
 
 extern Game g_game;

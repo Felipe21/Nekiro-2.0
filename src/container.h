@@ -20,14 +20,11 @@
 #ifndef FS_CONTAINER_H
 #define FS_CONTAINER_H
 
-#include <queue>
-
 #include "cylinder.h"
 #include "item.h"
 #include "tile.h"
 
 class Container;
-class DepotChest;
 class DepotLocker;
 class StoreInbox;
 

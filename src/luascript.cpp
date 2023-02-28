@@ -19,18 +19,21 @@
 
 #include "otpch.h"
 
-#include <boost/range/adaptor/reversed.hpp>
-#include <fmt/format.h>
-
 #include "luascript.h"
+
+#include "bed.h"
 #include "chat.h"
-#include "player.h"
+#include "configmanager.h"
+#include "databasemanager.h"
+#include "databasetasks.h"
+#include "depotchest.h"
+#include "events.h"
 #include "game.h"
-#include "protocolstatus.h"
-#include "spells.h"
+#include "globalevent.h"
+#include "housetile.h"
+#include "inbox.h"
 #include "iologindata.h"
 #include "iomapserialize.h"
-<<<<<<< HEAD
 #include "iomarket.h"
 #include "luavariant.h"
 #include "monster.h"
@@ -46,21 +49,10 @@
 #include "spectators.h"
 #include "spells.h"
 #include "storeinbox.h"
-=======
-#include "configmanager.h"
->>>>>>> parent of df7e47b4 (Cleanup & organize includes and PCH (#4019))
 #include "teleport.h"
-#include "databasemanager.h"
-#include "bed.h"
-#include "monster.h"
-#include "scheduler.h"
-#include "databasetasks.h"
-#include "events.h"
-#include "movement.h"
-#include "globalevent.h"
-#include "script.h"
 #include "weapons.h"
 
+#include <boost/range/adaptor/reversed.hpp>
 
 extern Chat* g_chat;
 extern Game g_game;
