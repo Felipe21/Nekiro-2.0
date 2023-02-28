@@ -99,8 +99,10 @@
 			<flag isalwayspremium="1" />
 			<flag ignoreyellcheck="1" />
 			<flag ignoresendprivatecheck="1" />
+			<flag cananswerruleviolations="1" />
 		</flags>
 	</group>
+
 	<group id="6" name="god" access="1" maxdepotitems="0" maxvipentries="200">
 		<flags>
 			<flag cannotusecombat="0" />
@@ -142,6 +144,7 @@
 			<flag isalwayspremium="1" />
 			<flag ignoreyellcheck="1" />
 			<flag ignoresendprivatecheck="1" />
+			<flag cananswerruleviolations="1" />
 		</flags>
 	</group>
 </groups>
