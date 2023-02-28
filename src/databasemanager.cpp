@@ -19,10 +19,11 @@
 
 #include "otpch.h"
 
-#include "databasemanager.h"
-
 #include "configmanager.h"
+#include "databasemanager.h"
 #include "luascript.h"
+
+#include <fmt/format.h>
 
 extern ConfigManager g_config;
 

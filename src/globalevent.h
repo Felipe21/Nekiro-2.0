@@ -19,13 +19,9 @@
 
 #ifndef FS_GLOBALEVENT_H
 #define FS_GLOBALEVENT_H
-
 #include "baseevents.h"
-#include "luascript.h"
 
-class GlobalEvent;
-using GlobalEvent_ptr = std::unique_ptr<GlobalEvent>;
-using GlobalEventMap = std::map<std::string, GlobalEvent>;
+#include "const.h"
 
 enum GlobalEvent_t {
 	GLOBALEVENT_NONE,
@@ -35,6 +31,10 @@ enum GlobalEvent_t {
 	GLOBALEVENT_SHUTDOWN,
 	GLOBALEVENT_RECORD,
 };
+
+class GlobalEvent;
+using GlobalEvent_ptr = std::unique_ptr<GlobalEvent>;
+using GlobalEventMap = std::map<std::string, GlobalEvent>;
 
 class GlobalEvents final : public BaseEvents
 {

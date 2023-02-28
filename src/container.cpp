@@ -20,14 +20,8 @@
 #include "otpch.h"
 
 #include "container.h"
-
-#include "depotchest.h"
-#include "game.h"
-#include "housetile.h"
-#include "inbox.h"
 #include "iomap.h"
-#include "spectators.h"
-#include "storeinbox.h"
+#include "game.h"
 
 extern Game g_game;
 

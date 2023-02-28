@@ -20,10 +20,10 @@
 #include "otpch.h"
 
 #include "iomapserialize.h"
-
-#include "bed.h"
 #include "game.h"
-#include "housetile.h"
+#include "bed.h"
+
+#include <fmt/format.h>
 
 extern Game g_game;
 

@@ -20,10 +20,11 @@
 #include "otpch.h"
 
 #include "party.h"
-
+#include "game.h"
 #include "configmanager.h"
 #include "events.h"
-#include "game.h"
+
+#include <fmt/format.h>
 
 extern Game g_game;
 extern ConfigManager g_config;

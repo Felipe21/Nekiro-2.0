@@ -20,10 +20,11 @@
 #include "otpch.h"
 
 #include "chat.h"
-
 #include "game.h"
 #include "pugicast.h"
 #include "scheduler.h"
+
+#include <fmt/format.h>
 
 extern Chat* g_chat;
 extern Game g_game;

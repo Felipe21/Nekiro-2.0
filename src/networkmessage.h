@@ -23,7 +23,10 @@
 #include "const.h"
 
 class Item;
+class Creature;
+class Player;
 struct Position;
+class RSA;
 
 class NetworkMessage
 {

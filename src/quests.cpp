@@ -21,7 +21,6 @@
 
 #include "quests.h"
 
-#include "player.h"
 #include "pugicast.h"
 
 std::string Mission::getDescription(Player* player) const

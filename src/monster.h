@@ -20,14 +20,12 @@
 #ifndef FS_MONSTER_H
 #define FS_MONSTER_H
 
+#include "tile.h"
 #include "monsters.h"
 
-#include "creature.h"
-#include "position.h"
-
-class Item;
+class Creature;
+class Game;
 class Spawn;
-class Tile;
 
 using CreatureHashSet = std::unordered_set<Creature*>;
 using CreatureList = std::list<Creature*>;

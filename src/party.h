@@ -20,10 +20,11 @@
 #ifndef FS_PARTY_H
 #define FS_PARTY_H
 
-#include "const.h"
+#include "player.h"
+#include "monsters.h"
 
-class Creature;
 class Player;
+class Party;
 
 using PlayerVector = std::vector<Player*>;
 

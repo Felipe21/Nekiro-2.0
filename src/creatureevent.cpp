@@ -20,9 +20,8 @@
 #include "otpch.h"
 
 #include "creatureevent.h"
-
-#include "item.h"
 #include "tools.h"
+#include "player.h"
 
 CreatureEvents::CreatureEvents() :
 	scriptInterface("CreatureScript Interface")

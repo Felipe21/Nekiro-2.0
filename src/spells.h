@@ -20,11 +20,10 @@
 #ifndef FS_SPELLS_H
 #define FS_SPELLS_H
 
+#include "player.h"
 #include "actions.h"
-#include "baseevents.h"
-#include "creature.h"
-#include "luascript.h"
 #include "talkaction.h"
+#include "baseevents.h"
 
 class InstantSpell;
 class RuneSpell;

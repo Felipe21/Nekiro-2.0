@@ -23,10 +23,11 @@
 
 #include "configmanager.h"
 #include "databasetasks.h"
-#include "game.h"
-#include "inbox.h"
 #include "iologindata.h"
+#include "game.h"
 #include "scheduler.h"
+
+#include <fmt/format.h>
 
 extern ConfigManager g_config;
 extern Game g_game;

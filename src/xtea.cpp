@@ -21,7 +21,8 @@
 
 #include "xtea.h"
 
-#include <cstring>
+#include <array>
+#include <assert.h>
 
 namespace xtea {
 

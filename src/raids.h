@@ -20,10 +20,9 @@
 #ifndef FS_RAIDS_H
 #define FS_RAIDS_H
 
-#include "baseevents.h"
 #include "const.h"
-#include "luascript.h"
 #include "position.h"
+#include "baseevents.h"
 
 enum RaidState_t {
 	RAIDSTATE_IDLE,

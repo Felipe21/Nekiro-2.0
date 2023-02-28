@@ -20,18 +20,23 @@
 #include "otpch.h"
 
 #include "item.h"
-
-#include "bed.h"
-#include "combat.h"
 #include "container.h"
+<<<<<<< HEAD
 #include "game.h"
 #include "house.h"
 #include "mailbox.h"
 //#include "podium.h"
+=======
+>>>>>>> parent of df7e47b4 (Cleanup & organize includes and PCH (#4019))
 #include "teleport.h"
 #include "trashholder.h"
+#include "mailbox.h"
+#include "house.h"
+#include "game.h"
+#include "bed.h"
 
-class Spells;
+#include "actions.h"
+#include "spells.h"
 
 extern Game g_game;
 extern Spells* g_spells;
