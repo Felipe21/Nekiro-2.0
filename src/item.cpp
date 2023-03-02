@@ -27,7 +27,7 @@
 #include "game.h"
 #include "house.h"
 #include "mailbox.h"
-#include "podium.h"
+//#include "podium.h"
 #include "teleport.h"
 #include "trashholder.h"
 

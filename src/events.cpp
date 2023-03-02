@@ -577,7 +577,7 @@ bool Events::eventPlayerOnLookInShop(Player* player, const ItemType* itemType, u
 
 }
 
-bool Events::eventPlayerOnLookInMarket(Player* player, const ItemType* itemType)
+/*bool Events::eventPlayerOnLookInMarket(Player* player, const ItemType* itemType)
 {
 	// Player:onLookInMarket(itemType) or Player.onLookInMarket(self, itemType)
 	if (info.playerOnLookInMarket == -1) {
@@ -602,7 +602,7 @@ bool Events::eventPlayerOnLookInMarket(Player* player, const ItemType* itemType)
 	LuaScriptInterface::setMetatable(L, -1, "ItemType");
 
 	return scriptInterface.callFunction(2);
-}
+}*/
 
 ReturnValue Events::eventPlayerOnMoveItem(Player* player, Item* item, uint16_t count, const Position& fromPosition, const Position& toPosition, Cylinder* fromCylinder, Cylinder* toCylinder)
 {

@@ -62,27 +62,31 @@ class Task
 		TaskFunc func;
 };
 
+
 Task* createTask(TaskFunc&& f);
 Task* createTask(uint32_t expiration, TaskFunc&& f);
 
-class Dispatcher : public ThreadHolder<Dispatcher> {
-	public:
-		void addTask(Task* task);
+class Dispatcher : public ThreadHolder<Dispatcher>
+{
+public:
+	void addTask(Task* task);
 
-		void shutdown();
+	void addTask(TaskFunc&& f) { addTask(new Task(std::move(f))); }
 
-		uint64_t getDispatcherCycle() const {
-			return dispatcherCycle;
-		}
+	void addTask(uint32_t expiration, TaskFunc&& f) { addTask(new Task(expiration, std::move(f))); }
 
-		void threadMain();
+	void shutdown();
 
-	private:
-		std::mutex taskLock;
-		std::condition_variable taskSignal;
+	uint64_t getDispatcherCycle() const { return dispatcherCycle; }
 
-		std::vector<Task*> taskList;
-		uint64_t dispatcherCycle = 0;
+	void threadMain();
+
+private:
+	std::mutex taskLock;
+	std::condition_variable taskSignal;
+
+	std::vector<Task*> taskList;
+	uint64_t dispatcherCycle = 0;
 };
 
 extern Dispatcher g_dispatcher;

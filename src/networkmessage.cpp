@@ -20,7 +20,8 @@
 #include "otpch.h"
 
 #include "networkmessage.h"
-
+#include "container.h"
+#include "creature.h"
 //<<<<<<< HEAD
 //#include "container.h"
 //#include "creature.h"

@@ -34,7 +34,7 @@
 #include "outfit.h"
 #include "outputmessage.h"
 #include "player.h"
-#include "podium.h"
+//#include "podium.h"
 #include "scheduler.h"
 #include "storeinbox.h"
 
@@ -577,7 +577,7 @@ void ProtocolGame::parsePacket(NetworkMessage& msg)
 		case 0xCC: parseSeekInContainer(msg); break;
 
 		//case 0xCD: break; // request inspect window
-		case 0xD0: parseQuestTracker(msg); break;
+		//case 0xD0: parseQuestTracker(msg); break;
 		case 0xD2: addGameTask([playerID = player->getID()]() { g_game.playerRequestOutfit(playerID); }); break;
 
 		case 0xD3: parseSetOutfit(msg); break;
@@ -863,6 +863,8 @@ void ProtocolGame::parseAutoWalk(NetworkMessage& msg)
 
 void ProtocolGame::parseSetOutfit(NetworkMessage& msg)
 {
+	uint8_t outfitType = msg.getByte();
+
 	Outfit_t newOutfit;
 	newOutfit.lookType = msg.get<uint16_t>();
 	newOutfit.lookHead = msg.getByte();
@@ -879,7 +881,8 @@ void ProtocolGame::parseSetOutfit(NetworkMessage& msg)
 			newOutfit.lookMountBody = msg.getByte();
 			newOutfit.lookMountLegs = msg.getByte();
 			newOutfit.lookMountFeet = msg.getByte();
-		} else {
+		}
+		else {
 			msg.skipBytes(4);
 
 			// prevent mount color settings from resetting
@@ -891,20 +894,23 @@ void ProtocolGame::parseSetOutfit(NetworkMessage& msg)
 		}
 
 		msg.get<uint16_t>(); // familiar looktype
-		addGameTask([=, playerID = player->getID()]() { g_game.playerChangeOutfit(playerID, newOutfit); });
+	//	bool randomizeMount = msg.getByte() == 0x01;
+		g_dispatcher.addTask([=, playerID = player->getID()]() { g_game.playerChangeOutfit(playerID, newOutfit/*, randomizeMount*/); });
 
-	// Store "try outfit" window
-	/*} else if (outfitType == 1) {
+		// Store "try outfit" window
+	}
+	/*else if (outfitType == 1) {
 		newOutfit.lookMount = 0;
 		// mount colors or store offerId (needs testing)
 		newOutfit.lookMountHead = msg.getByte();
 		newOutfit.lookMountBody = msg.getByte();
 		newOutfit.lookMountLegs = msg.getByte();
 		newOutfit.lookMountFeet = msg.getByte();
-		//player->? (open store?)
+		// player->? (open store?)
 
-	// Podium interaction
-	} else if (outfitType == 2) {
+		// Podium interaction
+	}
+	else if (outfitType == 2) {
 		Position pos = msg.getPosition();
 		uint16_t spriteId = msg.get<uint16_t>();
 		uint8_t stackpos = msg.getByte();
@@ -916,21 +922,13 @@ void ProtocolGame::parseSetOutfit(NetworkMessage& msg)
 		Direction direction = static_cast<Direction>(msg.getByte());
 		bool podiumVisible = msg.getByte() == 1;
 
-		//apply to podium
-		addGameTaskTimed(DISPATCHER_TASK_EXPIRATION, [=, playerID = player->getID()]() {
+		// apply to podium
+		g_dispatcher.addTask(DISPATCHER_TASK_EXPIRATION, [=, playerID = player->getID()]() {
 			g_game.playerEditPodium(playerID, newOutfit, pos, stackpos, spriteId, podiumVisible, direction);
-		});*/
-	}
+			});*/
+	//}
 }
 
-void ProtocolGame::parseEditPodiumRequest(NetworkMessage& msg)
-{
-	Position pos = msg.getPosition();
-	uint16_t spriteId = msg.get<uint16_t>();
-	uint8_t stackpos = msg.getByte();
-	addGameTaskTimed(DISPATCHER_TASK_EXPIRATION, [=, playerID = player->getID()]() { g_game.playerRequestEditPodium(playerID, pos, stackpos, spriteId); });
-//>>>>>>> 92b35aa3 (Replace std::bind with lambdas (#4017))
-}
 
 void ProtocolGame::parseToggleMount(NetworkMessage& msg)
 {
@@ -1218,10 +1216,6 @@ void ProtocolGame::parseRuleViolationReport(NetworkMessage& msg)
 
 void ProtocolGame::parseBugReport(NetworkMessage& msg)
 {
-//<<<<<<< HEAD
-//	const std::string& message = msg.getString();
-//	addGameTask(&Game::playerReportBug, player->getID(), message);
-//=======
 	uint8_t category = msg.getByte();
 	std::string message = msg.getString();
 
@@ -1230,8 +1224,9 @@ void ProtocolGame::parseBugReport(NetworkMessage& msg)
 		position = msg.getPosition();
 	}
 
-	addGameTask([=, playerID = player->getID(), message = std::move(message)]() { g_game.playerReportBug(playerID, message, position, category); });
-//>>>>>>> 92b35aa3 (Replace std::bind with lambdas (#4017))
+	g_dispatcher.addTask([=, playerID = player->getID(), message = std::move(message)]() {
+		//g_game.playerReportBug(playerID, message, position, category); revisar
+		});
 }
 
 void ProtocolGame::parseDebugAssert(NetworkMessage& msg)
