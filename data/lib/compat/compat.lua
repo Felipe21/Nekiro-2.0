@@ -25,6 +25,10 @@ THING_TYPE_NPC = CREATURETYPE_NPC + 1
 
 COMBAT_POISONDAMAGE = COMBAT_EARTHDAMAGE
 CONDITION_EXHAUST = CONDITION_EXHAUST_WEAPON
+MESSAGE_STATUS_CONSOLE_BLUE = MESSAGE_INFO_DESCR
+MESSAGE_STATUS_CONSOLE_RED = MESSAGE_STATUS_WARNING
+MESSAGE_EVENT_ORANGE = MESSAGE_STATUS_WARNING
+MESSAGE_STATUS_CONSOLE_ORANGE = MESSAGE_STATUS_WARNING
 TALKTYPE_ORANGE_1 = TALKTYPE_MONSTER_SAY
 TALKTYPE_ORANGE_2 = TALKTYPE_MONSTER_YELL
 
@@ -37,13 +41,15 @@ SOUTHEAST = DIRECTION_SOUTHEAST
 NORTHWEST = DIRECTION_NORTHWEST
 NORTHEAST = DIRECTION_NORTHEAST
 
+SPEECHBUBBLE_QUESTTRADER = SPEECHBUBBLE_QUEST
+
 do
 	local function storageProxy(player)
 		return setmetatable({}, {
-			__index = function (self, key)
+			__index = function(self, key)
 				return player:getStorageValue(key)
 			end,
-			__newindex = function (self, key, value)
+			__newindex = function(self, key, value)
 				player:setStorageValue(key, value)
 			end
 		})
@@ -51,10 +57,10 @@ do
 
 	local function accountStorageProxy(player)
 		return setmetatable({}, {
-			__index = function (self, key)
+			__index = function(self, key)
 				return Game.getAccountStorageValue(player:getAccountId(), key)
 			end,
-			__newindex = function (self, key, value)
+			__newindex = function(self, key, value)
 				Game.setAccountStorageValue(player:getAccountId(), key, value)
 			end
 		})
@@ -112,6 +118,7 @@ do
 	rawgetmetatable("Item").__index = ItemIndex
 	rawgetmetatable("Container").__index = ItemIndex
 	rawgetmetatable("Teleport").__index = ItemIndex
+	rawgetmetatable("Podium").__index = ItemIndex
 end
 
 do
@@ -676,9 +683,8 @@ function doPlayerRemOutfit(cid, lookType, addons)
 	end
 	if addons == 255 then
 		return player:removeOutfit(lookType)
-	else
-		return player:removeOutfitAddon(lookType, addons)
 	end
+	return player:removeOutfitAddon(lookType, addons)
 end
 doPlayerRemoveOutfit = doPlayerRemOutfit
 function doPlayerAddAddons(cid, addon) local p = Player(cid) return p and p:addAddonToAllOutfits(addon) or false end
@@ -898,6 +904,15 @@ function doAddContainerItemEx(uid, virtualId)
 	return res
 end
 
+function doAddContainerItem(uid, itemid, count)
+	local container = Container(uid)
+	if not container then
+		return false
+	end
+
+	return container:addItem(itemid, count)
+end
+
 function doSendMagicEffect(pos, magicEffect, ...) return Position(pos):sendMagicEffect(magicEffect, ...) end
 function doSendDistanceShoot(fromPos, toPos, distanceEffect, ...) return Position(fromPos):sendDistanceEffect(toPos, distanceEffect, ...) end
 function isSightClear(fromPos, toPos, floorCheck) return Position(fromPos):isSightClear(toPos, floorCheck) end
@@ -1000,9 +1015,8 @@ function hasProperty(uid, prop)
 	local parent = item:getParent()
 	if parent:isTile() and item == parent:getGround() then
 		return parent:hasProperty(prop)
-	else
-		return item:hasProperty(prop)
 	end
+	return item:hasProperty(prop)
 end
 
 function doSetItemText(uid, text)
@@ -1140,20 +1154,17 @@ function doTeleportThing(uid, dest, pushMovement)
 	if type(uid) == "userdata" then
 		if uid:isCreature() then
 			return uid:teleportTo(dest, pushMovement or false)
-		else
-			return uid:moveTo(dest)
 		end
+
+		return uid:moveTo(dest)
 	else
-		if uid >= 0x10000000 then
-			local creature = Creature(uid)
-			if creature then
-				return creature:teleportTo(dest, pushMovement or false)
+		local thing = getThing(uid)
+		if thing then
+			if thing:isCreature() then
+				return thing:teleportTo(dest, pushMovement or false)
 			end
-		else
-			local item = Item(uid)
-			if item then
-				return item:moveTo(dest)
-			end
+
+			return thing:moveTo(dest)
 		end
 	end
 	return false
@@ -1162,11 +1173,7 @@ end
 function getThingPos(uid)
 	local thing
 	if type(uid) ~= "userdata" then
-		if uid >= 0x10000000 then
-			thing = Creature(uid)
-		else
-			thing = Item(uid)
-		end
+		thing = getThing(uid)
 	else
 		thing = uid
 	end
@@ -1243,7 +1250,7 @@ function doRelocate(fromPos, toPos)
 end
 
 function getThing(uid)
-	return uid >= 0x10000000 and pushThing(Creature(uid)) or pushThing(Item(uid))
+	return uid >= CREATURE_ID_MIN and pushThing(Creature(uid)) or pushThing(Item(uid))
 end
 
 function getConfigInfo(info)
@@ -1514,8 +1521,6 @@ do
 	end
 end
 
---<<<<<<< HEAD
---=======
 do
 	local stats = {
 		[STAT_MAXHITPOINTS] = 'hitpoints',

@@ -10,7 +10,10 @@ function Player:onLook(thing, position, distance)
 	if EventCallback.onLook then
 		description = EventCallback.onLook(self, thing, position, distance, description)
 	end
-	self:sendTextMessage(MESSAGE_INFO_DESCR, description)
+
+	if description ~= "" then
+		self:sendTextMessage(MESSAGE_INFO_DESCR, description)
+	end
 end
 
 function Player:onLookInBattleList(creature, distance)
@@ -18,7 +21,10 @@ function Player:onLookInBattleList(creature, distance)
 	if EventCallback.onLookInBattleList then
 		description = EventCallback.onLookInBattleList(self, creature, distance, description)
 	end
-	self:sendTextMessage(MESSAGE_INFO_DESCR, description)
+
+	if description ~= "" then
+		self:sendTextMessage(MESSAGE_INFO_DESCR, description)
+	end
 end
 
 function Player:onLookInTrade(partner, item, distance)
@@ -26,7 +32,10 @@ function Player:onLookInTrade(partner, item, distance)
 	if EventCallback.onLookInTrade then
 		description = EventCallback.onLookInTrade(self, partner, item, distance, description)
 	end
-	self:sendTextMessage(MESSAGE_INFO_DESCR, description)
+
+	if description ~= "" then
+		self:sendTextMessage(MESSAGE_INFO_DESCR, description)
+	end
 end
 
 function Player:onLookInShop(itemType, count)
@@ -34,7 +43,16 @@ function Player:onLookInShop(itemType, count)
 	if EventCallback.onLookInShop then
 		description = EventCallback.onLookInShop(self, itemType, count, description)
 	end
-	self:sendTextMessage(MESSAGE_INFO_DESCR, description)
+
+	if description ~= "" then
+		self:sendTextMessage(MESSAGE_INFO_DESCR, description)
+	end
+end
+
+function Player:onLookInMarket(itemType)
+	if EventCallback.onLookInMarket then
+		EventCallback.onLookInMarket(self, itemType)
+	end
 end
 
 function Player:onMoveItem(item, count, fromPosition, toPosition, fromCylinder, toCylinder)
@@ -97,6 +115,94 @@ function Player:onTradeCompleted(target, item, targetItem, isSuccess)
 	end
 end
 
+function Player:onPodiumRequest(item)
+	if not item:isPodium() then
+		self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
+		return
+	end
+
+	self:sendEditPodium(item)
+end
+
+function Player:onPodiumEdit(item, outfit, direction, isVisible)
+	if not item:isPodium() then
+		self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
+		return
+	end
+
+	if not self:getGroup():getAccess() then
+		-- check if the player is in melee range
+		if getDistanceBetween(self:getPosition(), item:getPosition()) > 1 then
+			self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
+			return
+		end
+
+		-- reset outfit if unable to wear
+		if not self:canWearOutfit(outfit.lookType, outfit.lookAddons) then
+			outfit.lookType = 0
+		end
+
+		-- reset mount if unable to ride
+		local mount = Game.getMountIdByLookType(outfit.lookMount)
+		if not (mount and self:hasMount(mount)) then
+			outfit.lookMount = 0
+		end
+	end
+
+	local podiumOutfit = item:getOutfit()
+	local playerOutfit = self:getOutfit()
+
+	-- use player outfit if podium is empty
+	if podiumOutfit.lookType == 0 then
+		podiumOutfit.lookType = playerOutfit.lookType
+		podiumOutfit.lookHead = playerOutfit.lookHead
+		podiumOutfit.lookBody = playerOutfit.lookBody
+		podiumOutfit.lookLegs = playerOutfit.lookLegs
+		podiumOutfit.lookFeet = playerOutfit.lookFeet
+		podiumOutfit.lookAddons = playerOutfit.lookAddons
+	end
+
+	-- set player mount colors podium is empty
+	if podiumOutfit.lookMount == 0 then
+		podiumOutfit.lookMount = playerOutfit.lookMount
+		podiumOutfit.lookMountHead = playerOutfit.lookMountHead
+		podiumOutfit.lookMountBody = playerOutfit.lookMountBody
+		podiumOutfit.lookMountLegs = playerOutfit.lookMountLegs
+		podiumOutfit.lookMountFeet = playerOutfit.lookMountFeet
+	end
+
+	-- "outfit" box checked
+	if outfit.lookType ~= 0 then
+		podiumOutfit.lookType = outfit.lookType
+		podiumOutfit.lookHead = outfit.lookHead
+		podiumOutfit.lookBody = outfit.lookBody
+		podiumOutfit.lookLegs = outfit.lookLegs
+		podiumOutfit.lookFeet = outfit.lookFeet
+		podiumOutfit.lookAddons = outfit.lookAddons
+	end
+
+	-- "mount" box checked
+	if outfit.lookMount ~= 0 then
+		podiumOutfit.lookMount = outfit.lookMount
+		podiumOutfit.lookMountHead = outfit.lookMountHead
+		podiumOutfit.lookMountBody = outfit.lookMountBody
+		podiumOutfit.lookMountLegs = outfit.lookMountLegs
+		podiumOutfit.lookMountFeet = outfit.lookMountFeet
+	end
+
+	-- prevent invisible podium state
+	if outfit.lookType == 0 and outfit.lookMount == 0 then
+		isVisible = true
+	end
+
+	-- save player choices
+	item:setFlag(PODIUM_SHOW_PLATFORM, isVisible)
+	item:setFlag(PODIUM_SHOW_OUTFIT, outfit.lookType ~= 0)
+	item:setFlag(PODIUM_SHOW_MOUNT, outfit.lookMount ~= 0)
+	item:setDirection(direction < DIRECTION_NORTHEAST and direction or DIRECTION_SOUTH)
+	item:setOutfit(podiumOutfit)
+end
+
 local soulCondition = Condition(CONDITION_SOUL, CONDITIONID_DEFAULT)
 soulCondition:setTicks(4 * 60 * 1000)
 soulCondition:setParameter(CONDITION_PARAM_SOULGAIN, 1)
@@ -152,7 +258,7 @@ function Player:onGainExperience(source, exp, rawExp)
 		useStamina(self)
 
 		local staminaMinutes = self:getStamina()
-		if staminaMinutes > 2400 and self:isPremium() then
+		if staminaMinutes > 2340 and self:isPremium() then
 			exp = exp * 1.5
 		elseif staminaMinutes <= 840 then
 			exp = exp * 0.5
