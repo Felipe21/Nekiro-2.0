@@ -1,6 +1,6 @@
 local ec = EventCallback
 
-ec.onReportBug = function(self, message)
+ec.onReportBug = function(self, message, position, category)
 	if self:getAccountType() == ACCOUNT_TYPE_NORMAL then
 		return false
 	end
@@ -16,6 +16,9 @@ ec.onReportBug = function(self, message)
 	io.output(file)
 	io.write("------------------------------\n")
 	io.write("Name: " .. name)
+	if category == BUG_CATEGORY_MAP then
+		io.write(" [Map position: " .. position.x .. ", " .. position.y .. ", " .. position.z .. "]")
+	end
 	local playerPosition = self:getPosition()
 	io.write(" [Player Position: " .. playerPosition.x .. ", " .. playerPosition.y .. ", " .. playerPosition.z .. "]\n")
 	io.write("Comment: " .. message .. "\n")

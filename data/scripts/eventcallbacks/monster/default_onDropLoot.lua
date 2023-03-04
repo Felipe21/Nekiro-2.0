@@ -23,7 +23,6 @@ ec.onDropLoot = function(self, corpse)
 		end
 	end
 
-
 	if player then
 		local text
 		if doCreateLoot then
@@ -35,7 +34,7 @@ ec.onDropLoot = function(self, corpse)
 		if party then
 			party:broadcastPartyLoot(text)
 		else
-			player:sendTextMessage(MESSAGE_INFO_DESCR, text)
+			player:sendTextMessage(MESSAGE_LOOT, text)
 		end
 	end
 end
