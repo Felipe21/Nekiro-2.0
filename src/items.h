@@ -190,6 +190,9 @@ struct Abilities {
 	//extra skill modifiers
 	std::array<int32_t, SKILL_LAST + 1> skills = {0};
 	std::array<int32_t, SPECIALSKILL_LAST + 1> specialSkills = {0};
+	std::array<int16_t, COMBAT_COUNT> specialMagicLevelSkill = { 0 };
+	int32_t speed = 0;
+
 
 	int32_t speed = 0;
 

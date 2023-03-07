@@ -786,13 +786,19 @@ ReturnValue MoveEvent::EquipItem(MoveEvent* moveEvent, Player* player, Item* ite
 		player->addCondition(condition);
 	}
 
-	//skill modifiers
+	// skill modifiers
 	bool needUpdateSkills = false;
 
 	for (int32_t i = SKILL_FIRST; i <= SKILL_LAST; ++i) {
 		if (it.abilities->skills[i]) {
 			needUpdateSkills = true;
 			player->setVarSkill(static_cast<skills_t>(i), it.abilities->skills[i]);
+		}
+	}
+
+	for (int32_t i = 0; i < COMBAT_COUNT; ++i) {
+		if (it.abilities->specialMagicLevelSkill[i]) {
+			player->setSpecialMagicLevelSkill(indexToCombatType(i), it.abilities->specialMagicLevelSkill[i]);
 		}
 	}
 
@@ -807,7 +813,7 @@ ReturnValue MoveEvent::EquipItem(MoveEvent* moveEvent, Player* player, Item* ite
 		player->sendSkills();
 	}
 
-	//stat modifiers
+	// stat modifiers
 	bool needUpdateStats = false;
 
 	for (int32_t s = STAT_FIRST; s <= STAT_LAST; ++s) {
@@ -818,7 +824,9 @@ ReturnValue MoveEvent::EquipItem(MoveEvent* moveEvent, Player* player, Item* ite
 
 		if (it.abilities->statsPercent[s]) {
 			needUpdateStats = true;
-			player->setVarStats(static_cast<stats_t>(s), static_cast<int32_t>(player->getDefaultStats(static_cast<stats_t>(s)) * ((it.abilities->statsPercent[s] - 100) / 100.f)));
+			player->setVarStats(static_cast<stats_t>(s),
+				static_cast<int32_t>(player->getDefaultStats(static_cast<stats_t>(s)) *
+					((it.abilities->statsPercent[s] - 100) / 100.f)));
 		}
 	}
 
@@ -829,7 +837,6 @@ ReturnValue MoveEvent::EquipItem(MoveEvent* moveEvent, Player* player, Item* ite
 
 	return RETURNVALUE_NOERROR;
 }
-
 ReturnValue MoveEvent::DeEquipItem(MoveEvent*, Player* player, Item* item, slots_t slot, bool)
 {
 	if (!player->isItemAbilityEnabled(slot)) {
