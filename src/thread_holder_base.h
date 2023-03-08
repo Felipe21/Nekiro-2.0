@@ -22,6 +22,8 @@
 
 #include "enums.h"
 
+#include <atomic>
+
 template <typename Derived>
 class ThreadHolder
 {

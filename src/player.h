@@ -30,6 +30,8 @@
 #include "town.h"
 #include "vocation.h"
 
+#include <bitset>
+
 class DepotChest;
 class House;
 class NetworkMessage;
