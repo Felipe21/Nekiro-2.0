@@ -28,6 +28,9 @@
 #include <boost/variant.hpp>
 #include <deque>
 
+#include <boost/variant.hpp>
+#include <deque>
+
 class BedItem;
 class Container;
 class Door;

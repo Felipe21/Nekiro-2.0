@@ -28,6 +28,9 @@
 #include <utility>
 #include <valarray>
 
+#include <utility>
+#include <valarray>
+
 class Creature;
 class Player;
 struct Position;
