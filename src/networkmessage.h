@@ -20,6 +20,7 @@
 #ifndef FS_NETWORKMESSAGE_H
 #define FS_NETWORKMESSAGE_H
 
+#include "otpch.h"
 #include "const.h"
 
 class Item;

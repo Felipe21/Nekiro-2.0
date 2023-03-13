@@ -34,7 +34,7 @@
 #include "outfit.h"
 #include "outputmessage.h"
 #include "player.h"
-#include "podium.h"
+//#include "podium.h"
 #include "scheduler.h"
 #include "storeinbox.h"
 
@@ -577,7 +577,7 @@ void ProtocolGame::parsePacket(NetworkMessage& msg)
 		case 0xCC: parseSeekInContainer(msg); break;
 
 		//case 0xCD: break; // request inspect window
-		case 0xD0: parseQuestTracker(msg); break;
+		//case 0xD0: parseQuestTracker(msg); break;
 		case 0xD2: addGameTask([playerID = player->getID()]() { g_game.playerRequestOutfit(playerID); }); break;
 
 		case 0xD3: parseSetOutfit(msg); break;
@@ -863,6 +863,8 @@ void ProtocolGame::parseAutoWalk(NetworkMessage& msg)
 
 void ProtocolGame::parseSetOutfit(NetworkMessage& msg)
 {
+	uint8_t outfitType = msg.getByte();
+
 	Outfit_t newOutfit;
 	newOutfit.lookType = msg.get<uint16_t>();
 	newOutfit.lookHead = msg.getByte();
