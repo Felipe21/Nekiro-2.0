@@ -76,7 +76,7 @@ void Connection::close(bool force)
 	if (protocol) {
 //<<<<<<< HEAD
 //		g_dispatcher.addTask(
-			createTask(std::bind(&Protocol::release, protocol)));
+			//createTask(std::bind(&Protocol::release, protocol)));
 //=======
 		g_dispatcher.addTask(createTask([protocol = protocol]() { protocol->release(); }));
 //>>>>>>> 92b35aa3 (Replace std::bind with lambdas (#4017))
@@ -117,7 +117,7 @@ void Connection::accept(Protocol_ptr protocol)
 
 //=======
 	g_dispatcher.addTask(createTask([=]() { protocol->onConnect(); }));
-	connectionState = CONNECTION_STATE_GAMEWORLD_AUTH;
+	//connectionState = CONNECTION_STATE_GAMEWORLD_AUTH;
 //>>>>>>> 92b35aa3 (Replace std::bind with lambdas (#4017))
 	accept();
 }
@@ -135,7 +135,7 @@ void Connection::accept()
 		                     //   boost::asio::buffer(msg.getBuffer(), NetworkMessage::HEADER_LENGTH),
 		                     //   std::bind(&Connection::parseHeader, shared_from_this(), std::placeholders::_1));
 //=======
-								boost::asio::buffer(msg.getBuffer(), bufferLength),
+								boost::asio::buffer(msg.getBuffer(), NetworkMessage::HEADER_LENGTH),
 								[thisPtr = shared_from_this()](const boost::system::error_code &error, auto /*bytes_transferred*/) { thisPtr->parseHeader(error); });
 //>>>>>>> 92b35aa3 (Replace std::bind with lambdas (#4017))
 	} catch (boost::system::system_error& e) {
