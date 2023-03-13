@@ -193,7 +193,7 @@ bool Weapon::configureEvent(const pugi::xml_node& node)
 	}
 
 	if ((attr = node.attribute("action"))) {
-		action = getWeaponAction(boost::algorithm::to_lower_copy<std::string>(attr.as_string()));
+		action = getWeaponAction(asLowerCaseString(attr.as_string()));
 		if (action == WEAPONACTION_NONE) {
 			std::cout << "[Warning - Weapon::configureEvent] Unknown action " << attr.as_string() << std::endl;
 		}
@@ -222,7 +222,7 @@ bool Weapon::configureEvent(const pugi::xml_node& node)
 			}
 
 			if (vocationNode.attribute("showInDescription").as_bool(true)) {
-				vocStringList.push_back(boost::algorithm::to_lower_copy<std::string>(attr.as_string()));
+				vocStringList.push_back(asLowerCaseString(attr.as_string()));
 			}
 		}
 	}
@@ -911,7 +911,7 @@ bool WeaponWand::configureEvent(const pugi::xml_node& node)
 		return true;
 	}
 
-	std::string tmpStrValue = boost::algorithm::to_lower_copy<std::string>(attr.as_string());
+	std::string tmpStrValue = asLowerCaseString(attr.as_string());
 	if (tmpStrValue == "earth") {
 		params.combatType = COMBAT_EARTHDAMAGE;
 	} else if (tmpStrValue == "ice") {
